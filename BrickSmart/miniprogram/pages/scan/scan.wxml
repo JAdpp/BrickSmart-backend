@@ -1,5 +1,0 @@
-<mp-icon class="icon" icon="close" size="30" color="white" type="field" bind:tap="back"></mp-icon>
-<camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 85%;"></camera>
-<view class="photoArea">
-  <image class="icon_take" bind:tap="take" src="../../static/scan/take.png"/>
-</view>
