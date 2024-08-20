@@ -23,7 +23,7 @@ This project provides a Django-based backend for generating 3D models from text,
 
     ```bash
     git clone https://github.com/JAdpp/BrickSmart-backend.git
-    cd BrickSmart-backend\backend
+    cd BrickSmart-backend\BackEnd
     ```
 
 2. **Install Python libraries**
