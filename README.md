@@ -27,7 +27,7 @@ This project provides a Django-based backend for generating 3D models from text 
     cd BrickSmart-backend
     ```
 
-2. **install Python libraries**
+2. **Install Python libraries**
     ```bash
     pip install ***
     ```
