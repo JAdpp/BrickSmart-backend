@@ -1,6 +1,6 @@
 # BrickSmart-Text to LEGO Tutorial Generator (Backend)
 
-This project provides a Django-based backend for generating 3D models from text and images, converting these models into LEGO brick instructions, and providing guided assembly steps.
+This project provides a Django-based backend for generating 3D models from text, converting these models into LEGO brick instructions, and providing guided assembly steps.
 
 ## Features
 
