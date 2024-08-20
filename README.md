@@ -62,8 +62,7 @@ This project provides a Django-based backend for generating 3D models from text 
     - Navigate to the prompt page and enter a descriptive prompt.
     - The system will generate a 3D model based on the prompt.
 
-
-3. **Convert a 3D Model to LEGO:**
+2. **Convert a 3D Model to LEGO:**
 
     - Use the generated 3D model and follow the steps to convert it to LEGO building instructions.
     - The system provides a step-by-step guide for assembling the LEGO model.
