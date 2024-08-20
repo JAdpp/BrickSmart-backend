@@ -54,7 +54,7 @@ This project provides a Django-based backend for generating 3D models from text 
     python manage.py runserver
     ```
 
-    The server should now be running at `http://127.0.0.1:8000/`.
+    The server should now be running at `http://127.0.0.1:8000/model`.
 
 ### Configuration
 
