@@ -14,7 +14,7 @@ This project provides a Django-based backend for generating 3D models from text,
 
 - Python 3.10
 - Django 5.0.6
-- Pipenv or virtualenv
+- Required Python libraries
 - SQLite (for development)
 
 ### Setup
