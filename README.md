@@ -23,32 +23,22 @@ This project provides a Django-based backend for generating 3D models from text 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your_username/3d-lego-tutorial-generator.git
-    cd 3d-lego-tutorial-generator
+    git clone https://github.com/JAdpp/BrickSmart-backend.git
+    cd BrickSmart-backend
     ```
 
-2. **Create a virtual environment and install dependencies:**
-
+2. **install Python libraries**
     ```bash
-    pipenv install
-    pipenv shell
+    pip install ***
     ```
 
-    or using `virtualenv`:
-
-    ```bash
-    python3 -m venv env
-    source env/bin/activate
-    pip install -r requirements.txt
-    ```
-
-3. **Set up the database:**
+4. **Set up the database:**
 
     ```bash
     python manage.py migrate
     ```
 
-4. **Run the development server:**
+5. **Run the development server:**
 
     ```bash
     python manage.py runserver
@@ -58,15 +48,12 @@ This project provides a Django-based backend for generating 3D models from text 
 
 ### Configuration
 
-- **Environment Variables**: Set up your environment variables in a `.env` file for API keys and other secrets.
-
+- **API Keys**: Ensure you have the necessary API keys for OpenAI, Qiniu Cloud, and Tripo3D API.
     ```bash
     OPENAI_API_KEY=<your_openai_api_key>
     QINIU_ACCESS_KEY=<your_qiniu_access_key>
     QINIU_SECRET_KEY=<your_qiniu_secret_key>
     ```
-
-- **API Keys**: Ensure you have the necessary API keys for OpenAI, Qiniu Cloud, and Tripo3D API.
 
 ### Usage
 
