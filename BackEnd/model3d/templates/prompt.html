@@ -2,46 +2,191 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>text to 3D</title>
+    <title>Text to 3D</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        h3 {
+            margin-bottom: 20px;
+        }
+        #components {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        #components div {
+            flex-basis: 18%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #components img {
+            width: 100%;
+            height: auto;
+        }
+        #instructions img {
+            max-width: 100%;
+        }
+        #instructions p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #chatbox {
+            margin-top: 20px;
+        }
+        #chatbox div {
+            margin-bottom: 10px;
+        }
+        #chatbox input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #chatbox button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-<style>
-    h3 {
-        margin-bottom: 20px; /* 空出更多或更少的空间 */
-    }
-    #components {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-    #components div {
-        flex-basis: 18%;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    #components img {
-        width: 100%;
-        height: auto;
-    }
-</style>
 <body>
-    <form method="post" action="{% url 'generate_model' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div id="components">
-            <h3>选择元件:</h3>
-            {% for component in components %}
-            <div>
-                <img src="{{ MEDIA_URL }}{{ component.imgFile.url }}" style="width:100px; height:100px;">
-                <p>{{ component.caption }} ({{ component.sn }})</p>
-                <!--<p>类型: {{ component.get_btype_display }} | 颜色: {{ component.get_bcolor_display }}</p>-->
-                <label for="qty_{{ component.pid }}">数量:</label>
-                <input type="number" id="qty_{{ component.pid }}" name="component_qty_{{ component.pid }}" min="0" value="0">
-            </div>
-            {% endfor %}
-        </div>
-        
-        <button type="submit">Generate</button>
-    </form>
+    <div id="chatbox">
+        <h3>与智能助手对话</h3>
+        <div id="chatLog"></div>
+        <input type="text" id="chatInput" placeholder="输入对话内容..." autocomplete="off">
+        <button id="sendChat">发送</button>
+    </div>
+    
+    <button id="generateModel" style="display:none;">生成3D模型</button>
+
+    <div id="modelResult">
+        <!-- 这里会显示生成的3D模型信息 -->
+    </div>
+
+    <button id="generateLego" style="display:none;">生成方案</button>
+
+    <div id="instructions" style="display:none;">
+        <img id="stepImage" src="" alt="Step Image">
+        <p id="stepInstruction"></p>
+        <button id="prevStep" style="display:none;">上一步</button>
+        <button id="nextStep" style="display:none;">下一步</button>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#sendChat').on('click', function(){
+                var userMessage = $('#chatInput').val();
+                if (userMessage.trim() !== '') {
+                    $('#chatLog').append('<div>你: ' + userMessage + '</div>');
+                    $('#chatInput').val(''); // 清除输入框内容
+    
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "generate_model" %}', 
+                        data: {
+                            'prompt': userMessage,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        success: function(response){
+                            if (response.message) {
+                                $('#chatLog').append('<div>助手: ' + response.message + '</div>');
+                            }
+                            if (response.done) {
+                                // 如果对话结束，启用生成按钮
+                                $('#generateModel').show();
+                            }
+                        },
+                        error: function(response){
+                            $('#chatLog').append('<div>Error: ' + response.responseText + '</div>');
+                        }
+                    });
+                }
+            });
+    
+            $('#generateModel').on('click', function(){
+                var selectedComponents = [];
+                $('#components input').each(function(){
+                    var componentId = $(this).attr('id').split('_')[1];
+                    var qty = $(this).val();
+                    if (qty >= 0) {
+                        selectedComponents.push({
+                            'component_id': componentId,
+                            'quantity': qty
+                        });
+                    }
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "generate_model" %}',
+                    data: {
+                        'generate_model': true,
+                        'components': JSON.stringify(selectedComponents),
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        $('#modelResult').html('<p>Model Generated: <a href="' + response.model_filename + '" target="_blank">' + response.model_filename + '</a></p><p>Image: <a href="' + response.image_filename + '" target="_blank">' + response.image_filename + '</a></p>');
+                        $('#modelResult').append('<img src="' + response.voxel_image_path + '" alt="Voxel Image">');
+                        $('#generateLego').data('model_path', response.local_model_path);
+                        $('#generateLego').data('task_id', response.task_id);
+                        $('#generateLego').show();
+                    },
+                    error: function(response){
+                        $('#modelResult').html('<p>Error: ' + response.responseText + '</p>');
+                    }
+                });
+            });
+
+            $('#generateLego').on('click', function(){
+                var model_path = $(this).data('model_path');
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "generate_lego_tutorial" %}',
+                    data: {
+                        'model_path': model_path,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        $('#generateLego').hide();
+                        $('#instructions').show();
+                        $('#instructions').data('instructions', response.instructions);
+                        $('#instructions').data('currentStep', 0);
+                        showStep(0);
+                    },
+                    error: function(response){
+                        alert('Error: ' + response.responseText);
+                    }
+                });
+            });
+
+            $('#nextStep').on('click', function(){
+                var currentStep = $('#instructions').data('currentStep');
+                currentStep++;
+                showStep(currentStep);
+            });
+
+            $('#prevStep').on('click', function(){
+            var currentStep = $('#instructions').data('currentStep');
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+            });
+
+            function showStep(step) {
+                var instructions = $('#instructions').data('instructions');
+                if (step < instructions.length) {
+                    var instruction = instructions[step];
+                    $('#stepImage').attr('src', instruction.image_url);
+                    $('#stepInstruction').text(instruction.instruction);
+                    $('#instructions').data('currentStep', step);
+                    $('#prevStep').toggle(step > 0);  // 如果当前步骤大于0，则显示“上一步”按钮
+                    $('#nextStep').toggle(step < instructions.length - 1);  // 如果当前步骤小于总步骤数，则显示“下一步”按钮
+                } else {
+                    $('#nextStep').hide();
+                    alert('已完成所有步骤');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
