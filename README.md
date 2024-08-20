@@ -5,7 +5,6 @@ This project provides a Django-based backend for generating 3D models from text 
 ## Features
 
 - **Text-to-3D Model**: Generate 3D models using OpenAI's GPT models based on textual prompts.
-- **Image-to-3D Model**: Upload an image to generate 3D models using the Tripo3D API.
 - **3D Model to LEGO**: Convert 3D models into voxel representations and generate LEGO building instructions.
 - **Guided Assembly**: Use AI to provide guided assembly steps, especially for children.
 
