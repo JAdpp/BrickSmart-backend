@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "chatHistory": "/components/chatHistory/chatHistory"
+  }
+}

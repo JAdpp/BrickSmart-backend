@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/newPro/newPro",
+    "pages/scan/scan",
+    "pages/newPage/newPage",
+    "pages/customModule/customModule",
+    "pages/design/design",
+    "pages/setu/setu",
+    "pages/mine/mine",
+    "pages/construction/construction"
+  ],
+  "tabBar": {
+
+    "list":[
+      {
+        "pagePath": "pages/index/index",
+        "text": "设计",
+        "iconPath": "images/sj1.png",
+        "selectedIconPath": "images/sj2.png"
+      },
+      {
+        "pagePath": "pages/customModule/customModule",
+        "text": "教程",
+        "iconPath": "images/jc1.png",
+        "selectedIconPath": "images/jc2.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "个人",
+        "iconPath": "images/gr1.png",
+        "selectedIconPath": "images/gr2.png"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "useExtendedLib": {
+    "weui": true
+  }
+}

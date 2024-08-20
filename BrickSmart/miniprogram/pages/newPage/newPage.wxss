@@ -1,0 +1,268 @@
+.mt-15 {
+  margin-top: 26.16rpx;
+}
+
+.ml-17 {
+  margin-left: 29.65rpx;
+}
+
+.ml-15 {
+  margin-left: 26.16rpx;
+}
+
+.mt-17 {
+  margin-top: 29.65rpx;
+}
+
+.page {
+  background-color: #f8f5f4;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.group_2 {
+  overflow-y: auto;
+}
+
+.header {
+  padding-bottom: 34.88rpx;
+  background-color: #ffcb5d;
+  padding-top: 83.72rpx;
+}
+
+.image {
+  mix-blend-mode: DARKEN;
+  width: 100vw;
+  height: 11.1628vw;
+}
+
+.group {
+  padding: 7.71rpx 55.81rpx 8.01rpx;
+}
+
+.image_2 {
+  width: 55.81rpx;
+  height: 55.81rpx;
+}
+
+.pos {
+  position: absolute;
+  left: 55.81rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.text {
+  color: #212427;
+  font-size: 41.86rpx;
+  font-family: Noto Sans SC;
+  font-weight: 700;
+  line-height: 40.1rpx;
+}
+
+.group_3 {
+  margin-top: 52.33rpx;
+  padding-left: 54.07rpx;
+  padding-right: 54.07rpx;
+}
+
+.font {
+  font-size: 34.88rpx;
+  font-family: Noto Sans SC;
+  line-height: 33.07rpx;
+  font-weight: 700;
+  color: #212427;
+}
+
+.font_1 {
+  font-size: 27.91rpx;
+  font-family: Noto Sans SC;
+  line-height: 21.21rpx;
+  color: #212427;
+}
+
+.text_2 {
+  margin-left: 2.79rpx;
+  line-height: 32.93rpx;
+}
+
+.text-area {
+  padding: 25.29rpx 0 25.29rpx;
+  background-color: #ffffff;
+  border-radius: 13.95rpx;
+  border-left: solid 1.74rpx #212427;
+  border-right: solid 1.74rpx #212427;
+  border-top: solid 1.74rpx #212427;
+  border-bottom: solid 1.74rpx #212427;
+}
+
+.font_2 {
+  font-size: 27.91rpx;
+  font-family: Noto Sans SC;
+  line-height: 26.27rpx;
+  font-weight: 700;
+  color: #212427;
+}
+
+.text_3 {
+  margin-left: 29.06rpx;
+  width: 580rpx;
+  height: 250rpx;
+  font-size: 28rpx;
+  font-family: Noto Sans SC;
+  color: #212427;
+  line-height: 25.87rpx;
+  font-weight: unset;
+}
+
+.group_4 {
+  padding: 36.54rpx 43.52rpx 33.23rpx;
+  border-radius: 13.95rpx;
+  border-left: dotted 1.74rpx #212427;
+  border-right: dotted 1.74rpx #212427;
+  border-top: dotted 1.74rpx #212427;
+  border-bottom: dotted 1.74rpx #212427;
+}
+
+.image_3 {
+  width: 52.33rpx;
+  height: 52.33rpx;
+}
+
+.edit {
+  margin-top: 28rpx;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 45rpx;
+  padding: 28rpx 42rpx;
+  background-color: #ffffff;
+  border-radius: 14rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.image_3_3 {
+  border-radius: 13.95rpx;
+  width: 69.77rpx;
+  height: 69.77rpx;
+}
+
+.text_4 {
+  line-height: 26.62rpx;
+}
+
+.group_5 {
+  margin-top: 80.09rpx;
+}
+
+.text_1 {
+  margin-left: 2.79rpx;
+}
+
+.equal-division {
+  align-self: stretch;
+}
+
+.scrollx {
+  overflow-x: scroll;
+  height: 209rpx;
+}
+
+.equal-division-item {
+  padding: 12.75rpx 0 13.95rpx;
+  border-radius: 17.44rpx;
+  height: 209.3rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.group_6 {
+  flex: 1 1 195.35rpx;
+}
+
+.image_5_1 {
+  width: 128.01rpx;
+  height: 128.01rpx;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.group_1 {
+  padding: 49.24rpx 0 39.37rpx;
+  border-radius: 13.95rpx;
+  height: 195.35rpx;
+  border-left: dotted 1.74rpx #212427;
+  border-right: dotted 1.74rpx #212427;
+  border-top: dotted 1.74rpx #212427;
+  border-bottom: dotted 1.74rpx #212427;
+}
+
+.image_4 {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.text_6 {
+  line-height: 26.18rpx;
+}
+
+.group_7 {
+  padding: 49.24rpx 0 39.35rpx;
+  border-radius: 13.95rpx;
+  height: 195.35rpx;
+  border-left: dotted 1.74rpx #212427;
+  border-right: dotted 1.74rpx #212427;
+  border-top: dotted 1.74rpx #212427;
+  border-bottom: dotted 1.74rpx #212427;
+}
+
+.group_8 {
+  padding: 49.24rpx 0 39.12rpx;
+  border-radius: 13.95rpx;
+  height: 195.35rpx;
+  border-left: dotted 1.74rpx #212427;
+  border-right: dotted 1.74rpx #212427;
+  border-top: dotted 1.74rpx #212427;
+  border-bottom: dotted 1.74rpx #212427;
+}
+
+.text_7 {
+  line-height: 26.42rpx;
+}
+
+.button {
+  margin-top: 300.09rpx;
+}
+
+.text-wrapper {
+  padding: 38.06rpx 0 38.3rpx;
+  background-color: #ebe7e3;
+  border-radius: 52.33rpx;
+}
+
+.text-wrapper_1 {
+  margin-left: 8.18rpx;
+  margin-right: 8.2rpx;
+  padding: 14.06rpx 0 10.08rpx;
+  background-color: #ffffff;
+  border-radius: 13.95rpx;
+  height: 48.84rpx;
+  border-left: solid 1.74rpx #212427;
+  border-right: solid 1.74rpx #212427;
+  border-top: solid 1.74rpx #212427;
+  border-bottom: solid 1.74rpx #212427;
+}
+
+.text_5 {
+  color: #b4b4b4;
+  line-height: 33.52rpx;
+}
+
+.image_5 {
+  margin-top: 38.37rpx;
+  mix-blend-mode: MULTIPLY;
+  width: 100vw;
+  height: 6.0465vw;
+}

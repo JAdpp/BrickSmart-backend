@@ -1,0 +1,123 @@
+.mt-19 {
+  margin-top: 33.14rpx;
+}
+.mt-15 {
+  margin-top: 26.16rpx;
+}
+.page {
+  background-color: #ffcb5d;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+.group {
+  overflow-y: auto;
+}
+.header {
+  padding-bottom: 12.21rpx;
+  padding-top: 83.72rpx;
+}
+.image {
+  mix-blend-mode: DARKEN;
+  width: 100vw;
+  height: 11.1628vw;
+}
+.image_2 {
+  margin-top: 197.09rpx;
+  border-radius: 50%;
+  width: 97.67rpx;
+  height: 97.67rpx;
+}
+.group_2 {
+  margin-top: 88.95rpx;
+}
+.section_3 {
+  background-color: #b4b4b4;
+  border-radius: 0rpx 34.88rpx 34.88rpx 0rpx;
+  width: 237.23rpx;
+}
+.section_2 {
+  background-color: #ffffff;
+  border-radius: 0rpx 34.88rpx 34.88rpx 0rpx;
+  width: 237.23rpx;
+}
+.section {
+  margin-left: -6.78rpx;
+  padding: 27.1rpx 0 40.66rpx;
+  background-color: #d9d9d9;
+  border-radius: 0rpx 34.88rpx 34.88rpx 0rpx;
+  width: 237.23rpx;
+}
+.image_3 {
+  width: 191.86rpx;
+  height: 207.56rpx;
+}
+.section_4 {
+  background-color: #ffffff;
+  width: 159.96rpx;
+  height: 6.78rpx;
+}
+.text {
+  color: #000000;
+  font-size: 27.91rpx;
+  font-family: Noto Sans SC;
+  font-weight: 700;
+  line-height: 26.51rpx;
+}
+.font {
+  font-size: 20.93rpx;
+  font-family: Noto Sans SC;
+  line-height: 19.33rpx;
+}
+.text_2 {
+  text-transform: lowercase;
+}
+.text_3 {
+  margin-left: 260.86rpx;
+  margin-top: 23.37rpx;
+  color: #000000;
+}
+.text_4 {
+  margin-top: 11.28rpx;
+  color: #212427;
+  line-height: 20.37rpx;
+}
+.group_3 {
+  margin-top: 85.2rpx;
+  padding-left: 127.33rpx;
+  padding-right: 120.35rpx;
+}
+.button {
+  padding: 38.13rpx 0 38.65rpx;
+  background-color: #212427;
+  border-radius: 52.33rpx;
+}
+.font_2 {
+  font-size: 34.88rpx;
+  font-family: Noto Sans SC;
+  line-height: 33.07rpx;
+  font-weight: 700;
+}
+.text_5 {
+  color: #ffffff;
+  line-height: 33.1rpx;
+}
+.button_2 {
+  padding: 38.16rpx 0 31.67rpx;
+  background-color: #ffffff;
+  border-radius: 52.33rpx;
+  border-left: solid 3.49rpx #212427;
+  border-right: solid 3.49rpx #212427;
+  border-top: solid 3.49rpx #212427;
+  border-bottom: solid 3.49rpx #212427;
+}
+.text_6 {
+  color: #212427;
+}
+.image_4 {
+  margin-top: 306.98rpx;
+  mix-blend-mode: MULTIPLY;
+  width: 100vw;
+  height: 6.0465vw;
+}
