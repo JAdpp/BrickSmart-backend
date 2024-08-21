@@ -49,45 +49,59 @@
     </style>
 </head>
 <body>
+    <!-- 第一个聊天框部分 -->
     <div id="chatbox">
         <h3>与智能助手对话</h3>
-        <div id="chatLog"></div>
+        <div id="chatLog"></div> <!-- 显示聊天记录 -->
         <input type="text" id="chatInput" placeholder="输入对话内容..." autocomplete="off">
-        <button id="sendChat">发送</button>
+        <button id="sendChat">发送</button> <!-- 发送按钮 -->
     </div>
     
-    <button id="generateModel" style="display:none;">生成3D模型</button>
+    <button id="generateModel" style="display:none;">生成3D模型</button> <!-- 隐藏的生成3D模型按钮 -->
 
     <div id="modelResult">
         <!-- 这里会显示生成的3D模型信息 -->
     </div>
 
-    <button id="generateLego" style="display:none;">生成方案</button>
+    <button id="generateLego" style="display:none;">生成方案</button> <!-- 隐藏的生成LEGO方案按钮 -->
 
     <div id="instructions" style="display:none;">
+        <!-- 引导部分，开始时隐藏 -->
         <img id="stepImage" src="" alt="Step Image">
         <p id="stepInstruction"></p>
-        <button id="prevStep" style="display:none;">上一步</button>
-        <button id="nextStep" style="display:none;">下一步</button>
+        <button id="prevStep" style="display:none;">上一步</button> <!-- 隐藏的上一步按钮 -->
+        <button id="nextStep" style="display:none;">下一步</button> <!-- 隐藏的下一步按钮 -->
+    </div>
+
+    <!-- 第二个聊天框部分 -->
+    <div id="chatbox2" style="display:none;">
+        <h3>与智能助手对话（步骤完成后）</h3>
+        <div id="chatLog2"></div>  <!-- 显示聊天记录 -->
+        <input type="text" id="chatInput2" placeholder="输入对话内容..." autocomplete="off">
+        <button id="sendChat2">发送</button>  <!-- 发送按钮 -->
     </div>
 
     <script>
         $(document).ready(function(){
+            // 发送按钮的点击事件
             $('#sendChat').on('click', function(){
                 var userMessage = $('#chatInput').val();
                 if (userMessage.trim() !== '') {
+                    // 显示用户的输入信息
                     $('#chatLog').append('<div>你: ' + userMessage + '</div>');
                     $('#chatInput').val(''); // 清除输入框内容
-    
+                    
+                    // AJAX请求发送用户的消息到后端生成3D模型
                     $.ajax({
                         type: 'POST',
-                        url: '{% url "generate_model" %}', 
+                        url: '{% url "generate_model" %}',   // 请求的URL，Django模板中的反向URL
                         data: {
-                            'prompt': userMessage,
-                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                            'prompt': userMessage, // 用户输入的对话内容
+                            'csrfmiddlewaretoken': '{{ csrf_token }}' // CSRF令牌
                         },
                         success: function(response){
                             if (response.message) {
+                                // 显示助手的回复信息
                                 $('#chatLog').append('<div>助手: ' + response.message + '</div>');
                             }
                             if (response.done) {
@@ -96,12 +110,14 @@
                             }
                         },
                         error: function(response){
+                            // 显示错误信息
                             $('#chatLog').append('<div>Error: ' + response.responseText + '</div>');
                         }
                     });
                 }
             });
-    
+
+            // 生成3D模型按钮的点击事件
             $('#generateModel').on('click', function(){
                 var selectedComponents = [];
                 $('#components input').each(function(){
@@ -115,42 +131,48 @@
                     }
                 });
 
+                // AJAX请求生成3D模型
                 $.ajax({
                     type: 'POST',
-                    url: '{% url "generate_model" %}',
+                    url: '{% url "generate_model" %}', // 请求的URL，Django模板中的反向URL
                     data: {
                         'generate_model': true,
-                        'components': JSON.stringify(selectedComponents),
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        'components': JSON.stringify(selectedComponents), // 组件数据
+                        'csrfmiddlewaretoken': '{{ csrf_token }}' // CSRF令牌
                     },
                     success: function(response){
+                        // 显示生成的3D模型的链接和图片
                         $('#modelResult').html('<p>Model Generated: <a href="' + response.model_filename + '" target="_blank">' + response.model_filename + '</a></p><p>Image: <a href="' + response.image_filename + '" target="_blank">' + response.image_filename + '</a></p>');
                         $('#modelResult').append('<img src="' + response.voxel_image_path + '" alt="Voxel Image">');
+                        // 保存模型路径和任务ID，供后续使用
                         $('#generateLego').data('model_path', response.local_model_path);
                         $('#generateLego').data('task_id', response.task_id);
-                        $('#generateLego').show();
+                        $('#generateLego').show(); // 显示生成LEGO方案按钮
                     },
                     error: function(response){
+                        // 显示错误信息
                         $('#modelResult').html('<p>Error: ' + response.responseText + '</p>');
                     }
                 });
             });
-
+            
+            // 生成LEGO方案按钮的点击事件
             $('#generateLego').on('click', function(){
                 var model_path = $(this).data('model_path');
+                // AJAX请求生成LEGO教程
                 $.ajax({
                     type: 'POST',
-                    url: '{% url "generate_lego_tutorial" %}',
+                    url: '{% url "generate_lego_tutorial" %}', // 请求的URL，Django模板中的反向URL
                     data: {
-                        'model_path': model_path,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        'model_path': model_path,  // 传递模型路径
+                        'csrfmiddlewaretoken': '{{ csrf_token }}' // CSRF令牌
                     },
                     success: function(response){
-                        $('#generateLego').hide();
-                        $('#instructions').show();
+                    // $('#generateLego').hide(); // 隐藏生成LEGO方案按钮
+                        $('#instructions').show(); // 显示引导部分
                         $('#instructions').data('instructions', response.instructions);
                         $('#instructions').data('currentStep', 0);
-                        showStep(0);
+                        showStep(0); //显示第一步
                     },
                     error: function(response){
                         alert('Error: ' + response.responseText);
@@ -158,35 +180,78 @@
                 });
             });
 
+            // 下一步按钮的点击事件
             $('#nextStep').on('click', function(){
                 var currentStep = $('#instructions').data('currentStep');
                 currentStep++;
-                showStep(currentStep);
+                showStep(currentStep); // 显示下一步
             });
 
+            // 上一步按钮的点击事件
             $('#prevStep').on('click', function(){
-            var currentStep = $('#instructions').data('currentStep');
-            if (currentStep > 0) {
-                currentStep--;
-                showStep(currentStep);
-            }
+                var currentStep = $('#instructions').data('currentStep');
+                if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep); // 显示上一步
+                }
             });
 
+            // 显示指定步骤的函数
             function showStep(step) {
                 var instructions = $('#instructions').data('instructions');
-                if (step < instructions.length) {
+                console.log("Current Step:", step);
+                console.log("Total Instructions:", instructions.length);
+                
+                if (step < instructions.length - 1) {
                     var instruction = instructions[step];
+                    // 更新步骤图片和文字说明
                     $('#stepImage').attr('src', instruction.image_url);
                     $('#stepInstruction').text(instruction.instruction);
                     $('#instructions').data('currentStep', step);
+                    // 控制上一步和下一步按钮的显示状态
                     $('#prevStep').toggle(step > 0);  // 如果当前步骤大于0，则显示“上一步”按钮
-                    $('#nextStep').toggle(step < instructions.length - 1);  // 如果当前步骤小于总步骤数，则显示“下一步”按钮
+                    $('#nextStep').toggle(true);  // 继续显示“下一步”按钮
                 } else {
+                    console.log("Reached the end of instructions.");
+                    // 隐藏下一步按钮并显示完成提示
                     $('#nextStep').hide();
+                    $('#prevStep').show();  // 让“上一步”按钮保持可见
                     alert('已完成所有步骤');
+                    $('#chatbox2').show(); // 显示第二个聊天框
                 }
             }
+
+            // 第二个发送按钮的点击事件
+            $('#sendChat2').on('click', function(){
+                var userMessage = $('#chatInput2').val();
+                if (userMessage.trim() !== '') {
+                    // 显示用户的输入信息
+                    $('#chatLog2').append('<div>你: ' + userMessage + '</div>');
+                    $('#chatInput2').val(''); // 清除输入框内容
+
+                    // AJAX请求发送用户的消息到后端
+                    $.ajax({
+                        type: 'POST',
+                        url: '{% url "lego_storytelling" %}',  // 一个新的URL处理第二个对话框的对话
+                        data: {
+                            'prompt': userMessage,  // 用户输入的对话内容
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'  // CSRF令牌
+                        },
+                        success: function(response){
+                            if (response.message) {
+                                // 显示助手的回复信息
+                                $('#chatLog2').append('<div>助手: ' + response.message + '</div>');
+                            }
+                        },
+                        error: function(response){
+                            // 显示错误信息
+                            $('#chatLog2').append('<div>Error: ' + response.responseText + '</div>');
+                        }
+                    });
+                }
+            });
         });
+
     </script>
 </body>
 </html>
