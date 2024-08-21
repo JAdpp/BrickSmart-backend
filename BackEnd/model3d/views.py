@@ -134,7 +134,7 @@ def generate_model(request):
             
             # 调用Tripo3D API，将优化后的提示词转换为3D模型
             api_url = 'https://api.tripo3d.ai/v2/openapi/task'
-            api_key = "tsk_t3rmrzT7v4Pow6t2D3jK1h8I1S0bCecUZ1EjTPz7jaI"
+            api_key = "Your Tripo API key"
             header = {
                 'Authorization': f'Bearer {api_key}'
             }
