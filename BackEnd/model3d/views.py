@@ -752,3 +752,64 @@ def generate_instruction(image_path, openai_api_key):
     response_data = response.json()
     assistant_message = response_data['choices'][0]['message']['content']
     return assistant_message
+
+## 空间语言提问智能引导助手
+@csrf_exempt
+def lego_storytelling(request):
+    # 处理GET请求，加载页面
+    if request.method == 'GET':
+        return render(request, 'prompt.html')
+    
+    # 处理POST请求，处理对话
+    if request.method == 'POST':
+       # 如果是处理用户与智能助理对话的请求
+        user_input = request.POST.get('prompt', '').strip()
+        
+        # 检查用户输入是否为空
+        if not user_input:
+            return JsonResponse({'error': 'Invalid input data'}, status=400)
+        
+        # 从会话中获取当前的对话历史，如果没有则初始化一个新的对话历史
+        conversation_history2 = request.session.get('conversation_history2', [
+            {"role": "system", "content": "你是一个儿童的空间语言训练师，\
+                                        你的职责是帮助家长引导孩子并提升空间语言表达能力。你当前的任务是根据孩子目前已搭建的乐高积木，\
+                                        引导家长让孩子练习空间语言词汇，这些词汇包含形状（边、曲线、圆、线等）、位置和方向（描述相关位置）、大小关系、指示词（这里、那里、哪里等）。\
+                                        请询问孩子有关该乐高积木涉及以上词汇的问题。"}
+        ])
+
+        # 如果用户输入表示结束对话
+        if check_end_conversation(user_input):
+            # 将用户输入添加到对话历史中
+            conversation_history2.append({"role": "user", "content": user_input})
+            
+            # 调用GPT-4o-mini生成对话总结
+            completion = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=conversation_history2 + [{"role": "user", "content": "请根据回答，请评估一下孩子的空间语言水平。"}],
+            )
+            story = completion.choices[0].message.content
+
+            return JsonResponse({'message': story, 'done': True})
+        
+        else:
+            # 如果对话未结束，将用户输入添加到对话历史中
+            conversation_history2.append({"role": "user", "content": user_input})
+
+            # 调用GPT-4o-mini继续对话
+            completion = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=conversation_history2,
+            )
+
+            # 获取助手的回复并添加到对话历史中
+            model_reply = completion.choices[0].message.content
+
+            conversation_history2.append({"role": "assistant", "content": model_reply})
+            
+            # 更新会话中的对话历史
+            request.session['conversation_history2'] = conversation_history2
+
+            return JsonResponse({'message': model_reply, 'done': False})
+    
+    # 如果请求方法不是GET或POST，返回错误响应
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
