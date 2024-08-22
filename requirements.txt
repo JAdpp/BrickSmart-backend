@@ -1,0 +1,8 @@
+matplotlib==3.7.2
+numpy==1.23.5
+openai==1.42.0
+PuLP==2.9.0
+qiniu==7.13.2
+Requests==2.32.3
+scipy==1.14.1
+trimesh==4.4.1
