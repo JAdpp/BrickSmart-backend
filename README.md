@@ -28,7 +28,7 @@ This project provides a Django-based backend for generating 3D models from text,
 
 2. **Install Python libraries**
     ```bash
-    pip install ***
+    pip install -r requirements.txt
     ```
 
 4. **Set up the database:**
