@@ -52,6 +52,7 @@ This project provides a Django-based backend for generating 3D models from text,
     OPENAI_API_KEY=<your_openai_api_key>
     QINIU_ACCESS_KEY=<your_qiniu_access_key>
     QINIU_SECRET_KEY=<your_qiniu_secret_key>
+    tripo_api_key=<your_tripoai_secret_key>
     ```
 
 ### Usage
