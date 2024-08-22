@@ -1,0 +1,137 @@
+.mt-27 {
+  margin-top: 47.09rpx;
+  height: 183.14rpx;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.page {
+  background-color: #f8f5f4;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+.group_2 {
+  overflow-y: auto;
+}
+.header {
+  padding-bottom: 34.88rpx;
+  background-color: #ffcb5d;
+  padding-top: 83.72rpx;
+}
+.image {
+  mix-blend-mode: DARKEN;
+  width: 100vw;
+  height: 11.1628vw;
+}
+.group {
+  padding: 0 27.82rpx;
+}
+.image-wrapper {
+  width: 111.63rpx;
+}
+.image_2 {
+  width: 55.81rpx;
+  height: 55.81rpx;
+}
+.text {
+  color: #212427;
+  font-size: 41.86rpx;
+  font-family: Noto Sans SC;
+  font-weight: 700;
+  line-height: 37.8rpx;
+}
+.section {
+  margin-top: 43.6rpx;
+  background-color: #ffffff;
+  width: 655.81rpx;
+}
+.textto{
+  font-size: 20px;
+}
+.section_2 {
+  background-color: #fdad02;
+  width: 411.63rpx;
+  height: 13.95rpx;
+}
+.group_3 {
+  margin-top: 43.33rpx;
+  padding-left: 57.14rpx;
+  padding-right: 49.2rpx;
+}
+.font {
+  font-size: 31.4rpx;
+  font-family: Noto Sans SC;
+  line-height: 29.76rpx;
+  font-weight: 700;
+  color: #000000;
+}
+.text_2 {
+  line-height: 30.38rpx;
+}
+.text_3 {
+  color: #b4b4b4;
+  line-height: 29.27rpx;
+}
+.image_3 {
+  margin-top: 78.72rpx;
+  mix-blend-mode: MULTIPLY;
+  width: 600rpx;
+}
+.group_4 {
+  margin-top: 97.67rpx;
+}
+.group_5 {
+  padding: 0 47.09rpx;
+}
+.button {
+  padding: 31.17rpx 0 28.55rpx;
+  background-color: #ffffff;
+  border-radius: 85.47rpx;
+  width: 282.56rpx;
+  height: 95.93rpx;
+  border-left: solid 1.74rpx #000000;
+  border-right: solid 1.74rpx #000000;
+  border-top: solid 1.74rpx #000000;
+  border-bottom: solid 1.74rpx #000000;
+}
+.font_2 {
+  font-size: 34.88rpx;
+  font-family: Noto Sans SC;
+  line-height: 32.72rpx;
+  font-weight: 700;
+}
+.text_4 {
+  color: #000000;
+}
+.button_2 {
+  margin-right: 3.49rpx;
+}
+.text-wrapper {
+  padding: 33.17rpx 0 30.03rpx;
+  background-color: #000000;
+  border-radius: 85.47rpx;
+  width: 280.81rpx;
+  height: 95.93rpx;
+}
+.text_5 {
+  color: #ffffff;
+}
+.section_3 {
+  padding-top: 45.35rpx;
+  background-color: #ffffff;
+  border-radius: 52.33rpx 52.33rpx 0 0;
+}
+.group_6 {
+  padding: 0 56.53rpx;
+}
+.image_4 {
+  width: 54.07rpx;
+  height: 54.07rpx;
+}
+.image_5 {
+  mix-blend-mode: MULTIPLY;
+  width: 100vw;
+  height: 6.0465vw;
+}

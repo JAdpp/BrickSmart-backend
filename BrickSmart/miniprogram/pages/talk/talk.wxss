@@ -1,0 +1,58 @@
+.talk{
+  height: 600px;
+}
+.text {
+  color: #212427;
+  font-size: 41.86rpx;
+  font-family: Noto Sans SC;
+  font-weight: 700;
+  line-height: 40.1rpx;
+}
+.yuyinWrap {
+  /* height: 600px; */
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.yuyinCon {
+  border: 1px solid #ccc;
+  height: 120px;
+  padding: 10rpx 10rpx 70rpx;
+}
+.yuyinBtn {
+  width: 70%;
+  color: #606267;
+  height: 70rpx;
+  position: absolute;
+  right: 112rpx;
+  bottom: 12rpx;
+  background: #fff;
+  line-height: 62rpx;
+  align-items: center;
+}
+.header {
+  padding-bottom: 34.88rpx;
+  background-color: #ffcb5d;
+  padding-top: 83.72rpx;
+}
+.send{
+  /* position: relative; */
+  /* top: 500px; */
+  margin-top: 250px;
+  width: 60%;
+  background-color: rgba(255, 211, 115);
+  color: white;
+}
+.image_2 {
+  width: 55.81rpx;
+  height: 55.81rpx;
+}
+.yuyinBtnBg {
+  background: #eee;
+}
+.yuyinBtn::after {
+  color: #000;
+  border-radius: 0;
+  border: none;
+}

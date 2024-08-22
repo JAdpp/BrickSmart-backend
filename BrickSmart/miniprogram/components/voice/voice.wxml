@@ -1,0 +1,24 @@
+<view class="talk" style="background: darkgray;">
+  
+  <view class="yuyinWrap" style="left: 40px;bottom: 400px;">
+    <!-- 文本输入框：可以手动输入，也可以语音识别输入 -->
+      <textarea style="height: 50px;"
+        class='yuyinCon' placeholder='请输入内容' value='{{content}}'
+      ></textarea>
+    <!-- 语音按钮 touchStart手指触摸开始 touchEnd手指触摸结束 -->
+      <view>
+        <button
+          class="yuyinBtn {{recordState==1 || recordState==2 ? 'yuyinBtnBg':''}}"
+          bindtouchstart="touchStart" bindtouchend="touchEnd"
+        >
+          <text wx:if="{{recordState == 0 || recordState == 3}}">按住 说话</text>
+          <text wx:if="{{recordState == 1}}">松开 结束</text>
+          <text wx:if="{{recordState == 2}}">语音识别中...</text>
+        </button>
+        <!-- 发送按钮 -->
+        <!-- <button class="yuyinBtn2 "bindtap="sendMessage">发送</button> -->
+    </view>
+    
+  </view>
+  <button bindtap="sendMessage" style="top: 700px;">发送</button>
+</view>

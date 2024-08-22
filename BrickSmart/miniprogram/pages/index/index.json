@@ -1,0 +1,7 @@
+{
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "voice":"../../components/voice/voice"
+  },
+  "disableScroll": true
+}

@@ -1,0 +1,37 @@
+<view class="talk"> 
+  <view class="image-wrapper header "
+  style="display: flex;justify-content: start;">
+    <image class="image_2" bind:tap="back" src="../../static/back.png"  style="left: 0;flex: 1;"/>
+    <text class="text relative group" style="flex: 9;top:10px;text-align: center;">对话描述</text>
+  </view>
+  <view style="padding-top: 0px; width: 100%;height: auto;background-color: #ffcb5d;display: flex;">
+  <image src="../../static/talk/gb1.png" class="image_2" style="margin-top: 5px;"></image>
+  <text style="color: white;left: 5px;padding-top: 2px;justify-content: center;align-items: center;">对话会引导您更快速的描述出想要构建的内容~</text>
+  </view>
+  <view style="height: 100px;"></view>
+  <!-- 引导回复 -->
+  <view class="answer" style="padding-top: 50px;background-color: rgba(161, 161, 161, 0.2);border-radius: 30px;height: 200px;">
+<textarea value="{{textData}}"/>
+  </view>
+  <view class="yuyinWrap" style="left: 40px;bottom: 200px;">
+    <!-- 文本输入框：可以手动输入，也可以语音识别输入 -->
+      <textarea
+        class='yuyinCon' placeholder='请输入内容' value='{{content}}'
+        adjust-position="{{ true }}"></textarea>
+    <!-- 语音按钮 touchStart手指触摸开始 touchEnd手指触摸结束 -->
+      <view>
+        <button
+          class="yuyinBtn {{recordState==1 || recordState==2 ? 'yuyinBtnBg':''}}"
+          bindtouchstart="touchStart" bindtouchend="touchEnd"
+        >
+          <text wx:if="{{recordState == 0 || recordState == 3}}">按住 说话</text>
+          <text wx:if="{{recordState == 1}}">松开 结束</text>
+          <text wx:if="{{recordState == 2}}">语音识别中...</text>
+        </button>
+        <!-- 发送按钮 -->
+        <!-- <button class="yuyinBtn2 "bindtap="sendMessage">发送</button> -->
+    </view>
+    
+  </view>
+  <button class="send" bindtap="sendMessage">发送</button>
+</view>

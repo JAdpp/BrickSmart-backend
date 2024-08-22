@@ -1,0 +1,25 @@
+<cover-view class="startYuyinImage" wx:if="{{recordState == true}}">
+        <cover-image src="../../static/chatHistroy/6.png" class="luyining"></cover-image>
+</cover-view>
+<view class="flex-row justify-end section_2">
+  <image class="image_4" src="../../static/chatHistroy/1.png" wx:if="{{chatHistory}}" bind:tap="chatHis" />
+  <image class="image_4" src="../../static/chatHistroy/2.png" wx:else bind:tap="chatKey" />
+  <image class="ml-16 image_4" src="../../static/chatHistroy/3.png" />
+  <image src="../../static/chatHistroy/5.png" class=" ml-16 image_4 {{recordState==1 || recordState==2 ? 'yuyinBtnBg':''}}"
+      bindtouchstart="touchStart" bindtouchend="touchEnd"/>
+      <text wx:if="{{recordState == 0 || recordState == 3}}">按住 说话</text>
+      <text wx:if="{{recordState == 1}}">松开 结束</text>
+      <text wx:if="{{recordState == 2}}">语音识别中...</text>
+     
+</view>
+<view class="flex-col relative list" wx:if="{{!chatHistory}}">
+  <view class="flex-col list-item" wx:for="{{items}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <text class="self-start font_2 text_5">{{item.createTime}}</text>
+    <view class="mt-8 flex-row self-stretch">
+      <view class="flex-1 group_6">
+        <text class="font">{{item.content}}</text>
+      </view>
+      <image class="shrink-0 self-start image_5 ml-23" src="../../static/chatHistroy/4.png" />
+    </view>
+  </view>
+</view>

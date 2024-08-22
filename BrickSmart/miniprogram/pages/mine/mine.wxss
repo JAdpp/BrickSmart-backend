@@ -1,0 +1,58 @@
+/* pages/mine/mine.wxss */.ml-36-5 {
+  margin-left: 33.92rpx;
+}
+.mt-27 {
+  margin-top: 25.09rpx;
+}
+.page {
+  padding-bottom: 56.23rpx;
+  background-color: #f8f2e6;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.section {
+  margin-top: -12.08rpx;
+  background-color: #ffcb5d;
+  height: 319.24rpx;
+}
+.group {
+  margin-top: -90.61rpx;
+  padding-left: 67.84rpx;
+  padding-right: 47.86rpx;
+}
+.image {
+  width: 212.36rpx;
+  height: 211.9rpx;
+}
+.text {
+  margin-top: 115.71rpx;
+  color: #000000;
+  font-size: 64.59rpx;
+  font-family: Adobe Heiti Std;
+  line-height: 53.44rpx;
+}
+.section_2 {
+  background-color: #ffffff;
+  border-radius: 18.59rpx;
+  height: 232.81rpx;
+}
+.view {
+  margin-top: 68.31rpx;
+}
+.group_2 {
+  padding: 52.97rpx 0;
+}
+.section_4 {
+  margin-top: 3.72rpx;
+  background-color: #ffffff;
+  border-radius: 18.59rpx;
+  width: 275.09rpx;
+  height: 502.32rpx;
+}
+.section_3 {
+  background-color: #ffffff;
+  border-radius: 18.59rpx;
+  height: 240.24rpx;
+}
