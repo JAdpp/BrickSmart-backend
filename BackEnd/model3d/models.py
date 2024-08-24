@@ -9,7 +9,7 @@ class ModelTask(models.Model):
     model_download_url = models.URLField(verbose_name='模型保存地址')
     image_download_url = models.URLField(verbose_name='模型预览图保存地址')
     lego_url = models.URLField(verbose_name='乐高方案保存地址')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     created_time = models.DateTimeField(auto_now_add=True,verbose_name='创建日期')
 
     def __str__(self):

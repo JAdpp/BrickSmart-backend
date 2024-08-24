@@ -26,14 +26,17 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from django.conf import settings
 import base64
 
-#OpenAI密钥(不要外传)
-openai_api_key = 'your openai api key'
+#OpenAI密钥（不要外传）
+openai_api_key = '*************'
 # 初始化OpenAI客户端
 client = OpenAI(api_key=openai_api_key)
 
+#TripoAI秘钥（不要外传）
+tripo_api_key = "*************"
+
 #七牛云密钥（不要外传）
-access_key = 'your qiniu access key'
-secret_key = 'your qiniu secret key'
+access_key = '*********************'
+secret_key = '*********************'
 
 # 构建七牛云鉴权对象
 q = qiniu.Auth(access_key, secret_key)
@@ -76,7 +79,7 @@ def download_and_save_file(url, folder, task_id, extension):
 
 # 判断是否结束对话的函数
 def check_end_conversation(user_input):
-    end_phrases = ["结束", "可以了", "停止", "结束对话", "可以结束", "我觉得可以了","OK","就这样"]
+    end_phrases = ["结束", "可以了", "停止", "结束对话","OK","ok","就这样"]
     for phrase in end_phrases:
         if phrase in user_input:
             return True
@@ -85,7 +88,7 @@ def check_end_conversation(user_input):
 ## 文生3D视图函数，通过调用Tripo AI的API实现
 @csrf_exempt
 def generate_model(request):
-    # 处理GET请求，加载页面并显示组件选择部分
+    # 处理GET请求，加载页面
     if request.method == 'GET':
         # 获取所有元件列表，并传递给模板渲染
         # components = ComponentList.objects.all()
@@ -134,7 +137,7 @@ def generate_model(request):
             
             # 调用Tripo3D API，将优化后的提示词转换为3D模型
             api_url = 'https://api.tripo3d.ai/v2/openapi/task'
-            api_key = "Your Tripo API key"
+            api_key = tripo_api_key
             header = {
                 'Authorization': f'Bearer {api_key}'
             }
@@ -188,7 +191,7 @@ def generate_model(request):
 
             # 加载3D模型并转换为体素矩阵
             mesh = load_model(model_file_path)
-            resolution = 20
+            resolution = 16
             voxel_matrix = convert_to_voxel(mesh, resolution)
 
             # 将体素矩阵保存到会话中
@@ -302,7 +305,7 @@ def generate_model_image(request):
 
             # 设置API的URL和密钥
             api_url = "https://api.tripo3d.ai/v2/openapi/upload"
-            api_key = "tsk_S9zAZ08NFPuKt9le3qqr6rDbHUQO38dVoqm7zOf1U49"
+            api_key = tripo_api_key
             headers = {
                 "Authorization": f"Bearer {api_key}"
             }
@@ -399,7 +402,7 @@ brick_list = [[1, 2, 3, 4],
                 [1, 2, 3, 4]]
 # bricks you have, namely 1x1, 1x2, 1x3, 1x4, 2x1, 2x2, 2x3, 2x4
 
-HEIGHT = 20
+HEIGHT = 16
 
 # 加载3D模型
 def load_model(file_path):
@@ -730,10 +733,10 @@ def generate_instruction(image_path, openai_api_key):
         "messages": [
             {
                 "role": "system",
-                "content": "你是一个家庭引导师，\
-                            你的职责是帮助家长引导孩子并提升语言表达能力。你当前的任务是根据图片中乐高搭建教程的步骤，\
+                "content": "你是一个儿童的空间语言训练师，\
+                            你的职责是帮助家长引导孩子并提升空间语言能力。你当前的任务是根据图片中乐高搭建教程的步骤，\
                             在界面中实时显示引导提示。例如‘问问孩子最上方的积木是什么？’或‘现在拼的是模型的哪一部分？’。\
-                            步骤图会由底向上搭建，每次输出一句提示语。"
+                            步骤图会由底向上搭建，每次输出一句提示语。不要提问颜色。"
             },
             {
                 "role": "user",
@@ -752,6 +755,7 @@ def generate_instruction(image_path, openai_api_key):
     response_data = response.json()
     assistant_message = response_data['choices'][0]['message']['content']
     return assistant_message
+
 
 ## 空间语言提问智能引导助手
 @csrf_exempt
@@ -785,7 +789,7 @@ def lego_storytelling(request):
             # 调用GPT-4o-mini生成对话总结
             completion = client.chat.completions.create(
                 model="gpt-4o-mini",
-                messages=conversation_history2 + [{"role": "user", "content": "请根据回答，请评估一下孩子的空间语言水平。"}],
+                messages=conversation_history2 + [{"role": "user", "content": "请根据回答，评估一下孩子的空间语言水平。"}],
             )
             story = completion.choices[0].message.content
 
