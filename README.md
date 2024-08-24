@@ -12,7 +12,7 @@ This project provides a Django-based backend for generating 3D models from text,
 
 ### Prerequisites
 
-- Python 3.10
+- Python 3.10.7
 - Django 5.0.6
 - Required Python libraries
 - SQLite (for development)
